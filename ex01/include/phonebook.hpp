@@ -6,7 +6,7 @@
 /*   By: kjroydev <kjroydev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 18:37:14 by kjroydev          #+#    #+#             */
-/*   Updated: 2026/05/24 20:57:18 by kjroydev         ###   ########.fr       */
+/*   Updated: 2026/05/24 22:25:03 by kjroydev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class PhoneBook
 		void	add_contact(void);
 		void	set_index(int num);
 		void	print(const std::string &s);
+		void	print_row(int i, std::string command);
 };
 
 #endif

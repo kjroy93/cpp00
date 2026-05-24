@@ -6,7 +6,7 @@
 /*   By: kjroydev <kjroydev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 20:27:44 by kjroydev          #+#    #+#             */
-/*   Updated: 2026/05/24 21:09:46 by kjroydev         ###   ########.fr       */
+/*   Updated: 2026/05/24 22:43:46 by kjroydev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,31 @@ void	PhoneBook::set_index(int num)
 void	PhoneBook::print(const std::string &s)
 {
 	std::cout << "|" << std::setw(10) << s;
+}
+
+void	PhoneBook::print_row(int i, std::string command)
+{
+	std::string	s;
+
+	s = clean_index(i);
+	if (command == "SEARCH")
+	{
+		print(format(s));
+		print(format(this->contacts_[i].get_first_name()));
+		print(format(this->contacts_[i].get_last_name()));
+		print(format(this->contacts_[i].get_nickname()));
+	}
+	else
+	{
+		print(format(s));
+		print(format(this->contacts_[i].get_first_name()));
+		print(format(this->contacts_[i].get_last_name()));
+		print(format(this->contacts_[i].get_nickname()));
+		print(format(this->contacts_[i].get_number()));
+		print(format(this->contacts_[i].get_secret()));
+	}
+	std::cout << "|";
+	std::cout << std::endl;
 }
 
 std::string	PhoneBook::format(std::string info)
@@ -54,43 +79,28 @@ std::string	PhoneBook::clean_index(int i)
 
 void	PhoneBook::search()
 {
-	std::string	s;
-	int			i;
-	int			y;
+	int	size;
+	int	index;
 
-	i = PhoneBook::get_index() % 8;
+	size = this->get_index() % 8;
 	std::cout << "+----------+----------+----------+----------+" << std::endl;
-	for (int y = 0; y < i; y++)
-	{
-		s = clean_index(y);
-		print(format(s));
-		print(format(PhoneBook::contacts_[y].get_first_name()));
-		print(format(PhoneBook::contacts_[y].get_last_name()));
-		print(format(PhoneBook::contacts_[y].get_nickname()));
-		std::cout << "|";
-		std::cout << std::endl;
-	}
+	for (int i = 0; i < size; i++)
+		print_row(i, "SEARCH");
 	std::cout << "+----------+----------+----------+----------+" << std::endl;
 	while (true)
 	{
-		std::cout << "Please type a valid index to show you a specific contact" << std::endl;
-		std::cin >> y;
-		if (y > i)
+		std::cout << "Please type a valid index" << std::endl;
+		std::cin >> index;
+
+		if (index < 0 || index >= size)
 		{
 			std::cout << "Invalid index" << std::endl;
 			continue ;
 		}
-		else
-			break ;
+		break ;
 	}
-	s = clean_index(y);
 	std::cout << "+----------+----------+----------+----------+" << std::endl;
-	print(format(s));
-	print(format(PhoneBook::contacts_[y].get_first_name()));
-	print(format(PhoneBook::contacts_[y].get_last_name()));
-	print(format(PhoneBook::contacts_[y].get_nickname()));
-	std::cout << "|";
-	std::cout << std::endl;
+	print_row(index, "SEARCH");
 	std::cout << "+----------+----------+----------+----------+" << std::endl;
 }
 
@@ -100,17 +110,7 @@ void	PhoneBook::table(int &n)
 
 	std::cout << "+----------+----------+----------+----------+----------+----------+" << std::endl;
 	for (int i = 0; i < n; i++)
-	{
-		s = clean_index(i);
-		print(format(s));
-		print(format(PhoneBook::contacts_[i].get_first_name()));
-		print(format(PhoneBook::contacts_[i].get_last_name()));
-		print(format(PhoneBook::contacts_[i].get_nickname()));
-		print(format(PhoneBook::contacts_[i].get_number()));
-		print(format(PhoneBook::contacts_[i].get_secret()));
-		std::cout << "|";
-		std::cout << std::endl;
-	}
+		print_row(i, "TABLE");
 	std::cout << "+----------+----------+----------+----------+----------+----------+" << std::endl;
 }
 
@@ -124,7 +124,7 @@ void	PhoneBook::add_contact()
 	int			i;
 	int			size;
 
-	i = PhoneBook::get_index() % 8;
+	i = this->get_index() % 8;
 	std::cout << "Please enter the first name of you new contact" << std::endl;
 	std::cin >> first_name;
 	std::cout << "Please enter the last name of your new contact" << std::endl;
@@ -136,15 +136,10 @@ void	PhoneBook::add_contact()
 	std::cout << "You know a juicy secret about your new contact ^^?" << std::endl;
 	std::cin >> secret;
 
-	contacts_[i].set_contact(
-	first_name,
-	last_name,
-	nick_name,
-	number,
-	secret);
+	contacts_[i].set_contact(first_name, last_name, nick_name, number, secret);
 
-	PhoneBook::set_index(PhoneBook::get_index() + 1);
+	this->set_index(this->get_index() + 1);
 
-	size = PhoneBook::get_index();
+	size = this->get_index();
 	table(size);
 }
