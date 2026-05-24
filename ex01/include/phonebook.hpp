@@ -6,22 +6,31 @@
 /*   By: kjroydev <kjroydev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 18:37:14 by kjroydev          #+#    #+#             */
-/*   Updated: 2026/05/22 20:48:31 by kjroydev         ###   ########.fr       */
+/*   Updated: 2026/05/24 20:57:18 by kjroydev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "contact.hpp"
+#ifndef PHONEBOOK
+# define PHONEBOOK
+# include "contact.hpp"
+# include <iostream>
+# include <iomanip>
+# include <sstream>
 
 class PhoneBook
 {
 	private:
-		Contact contacts_[8];
-		int		i = 0;
+		int			i;
+		Contact 	contacts_[8];
+		void		table(int &n);
+		std::string	format(std::string);
+		std::string clean_index(int i);
 	public:
-		void	add_contact();
-		void	table(int &i);
-		void	search();
-		void	print(const Contact &c);
-		void	setIndex(int num);
-		int		getIndex();
+		void	search(void);
+		int		get_index(void);
+		void	add_contact(void);
+		void	set_index(int num);
+		void	print(const std::string &s);
 };
+
+#endif

@@ -6,31 +6,35 @@
 /*   By: kjroydev <kjroydev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 18:37:19 by kjroydev          #+#    #+#             */
-/*   Updated: 2026/05/22 19:14:09 by kjroydev         ###   ########.fr       */
+/*   Updated: 2026/05/24 21:05:47 by kjroydev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
+#ifndef CONTACT
+# define CONTACT
+# include <iostream>
+# include <string>
 
 class Contact
 {
 	private:
-		std::string first_name_;
+		std::string secret_;
 		std::string last_name_;
 		std::string nick_name_;
+		std::string first_name_;
 		std::string phone_number_;
-		std::string secret_;
 	public:
-		void	setContact(
+		void	set_contact(
 				const std::string &first_name,
 				const std::string &last_name,
 				const std::string &nickname,
 				const std::string &num,
 				const std::string &secret);
-		const std::string& getFirstName() const;
-		const std::string& getLastName() const;
-		const std::string& getNickName() const;
-		const std::string& getNumber() const;
-		const std::string& getSecret() const;
+		const std::string& get_number() const;
+		const std::string& get_secret() const;
+		const std::string& get_nickname() const;
+		const std::string& get_last_name() const;
+		const std::string& get_first_name() const;
 };
+
+#endif
