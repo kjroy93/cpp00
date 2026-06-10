@@ -7,7 +7,7 @@ SRC_FILES		= 	src/contact.cpp		\
 					src/main.cpp		\
 					src/phonebook.cpp
 INCLUDES		=	include
-CPP				=	g++
+CPP				=	c++
 CPPFLAGS		=	-Wall -Werror -Wextra -std=c++98 -I$(INCLUDES)
 
 ###########################################
