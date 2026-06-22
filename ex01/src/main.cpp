@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjroydev <kjroydev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmarrero <kmarrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 18:58:44 by kjroydev          #+#    #+#             */
-/*   Updated: 2026/05/24 21:31:18 by kjroydev         ###   ########.fr       */
+/*   Updated: 2026/06/22 20:26:34 by kmarrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phonebook.hpp"
-#include "contact.hpp"
+#include "PhoneBook.hpp"
+#include "Contact.hpp"
 
 int	main(void)
 {
@@ -22,18 +22,18 @@ int	main(void)
 
 	i = 0;
 	size = 0;
-	pb.set_index(i);
+	pb.setIndex(i);
 	while (true)
 	{
 		std::cout << "Please enter a valid command: ADD, SEARCH or EXIT" << std::endl;
 		std::cin >> command;
 		if (command == "ADD")
 		{
-			pb.add_contact();
+			pb.addContact();
 			i += 1;
 			if (size < 8)
 				size++;
-			pb.set_index(i);
+			pb.setIndex(i);
 		}
 		else if (command == "SEARCH")
 			pb.search();

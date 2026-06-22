@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contact.cpp                                        :+:      :+:    :+:   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjroydev <kjroydev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmarrero <kmarrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 19:06:42 by kjroydev          #+#    #+#             */
-/*   Updated: 2026/05/24 20:56:01 by kjroydev         ###   ########.fr       */
+/*   Updated: 2026/06/22 20:59:08 by kmarrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "contact.hpp"
+#include "Contact.hpp"
 
-void	Contact::set_contact(
+void	Contact::setContact(
 				const std::string &first_name,
 				const std::string &last_name,
 				const std::string &nickname,
@@ -26,27 +26,27 @@ void	Contact::set_contact(
 	secret_ = secret;
 }
 
-const std::string& Contact::get_first_name(void) const
+const std::string& Contact::getFirstName(void) const
 {
 	return (first_name_);
 }
 
-const std::string& Contact::get_last_name(void) const
+const std::string& Contact::getLastName(void) const
 {
 	return (last_name_);
 }
 
-const std::string& Contact::get_nickname(void) const
+const std::string& Contact::getNickName(void) const
 {
 	return (nick_name_);
 }
 
-const std::string& Contact::get_number(void) const
+const std::string& Contact::getNumber(void) const
 {
 	return (phone_number_);
 }
 
-const std::string& Contact::get_secret(void) const
+const std::string& Contact::getSecret(void) const
 {
 	return (secret_);
 }

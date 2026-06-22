@@ -3,9 +3,9 @@
 ###########################################
 
 NAME			=	book
-SRC_FILES		= 	src/contact.cpp		\
+SRC_FILES		= 	src/Contact.cpp		\
 					src/main.cpp		\
-					src/phonebook.cpp
+					src/PhoneBook.cpp
 INCLUDES		=	include
 CPP				=	c++
 CPPFLAGS		=	-Wall -Werror -Wextra -std=c++98 -I$(INCLUDES)

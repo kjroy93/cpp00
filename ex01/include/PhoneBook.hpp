@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.hpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjroydev <kjroydev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmarrero <kmarrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 18:37:14 by kjroydev          #+#    #+#             */
-/*   Updated: 2026/05/24 22:25:03 by kjroydev         ###   ########.fr       */
+/*   Updated: 2026/06/22 20:21:04 by kmarrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK
-# define PHONEBOOK
-# include "contact.hpp"
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
+# include "Contact.hpp"
 # include <iostream>
 # include <iomanip>
 # include <sstream>
@@ -24,14 +24,14 @@ class PhoneBook
 		Contact 	contacts_[8];
 		void		table(int &n);
 		std::string	format(std::string);
-		std::string clean_index(int i);
+		std::string cleanIndex(int i);
 	public:
 		void	search(void);
-		int		get_index(void);
-		void	add_contact(void);
-		void	set_index(int num);
+		int		getIndex(void);
+		void	addContact(void);
+		void	setIndex(int num);
 		void	print(const std::string &s);
-		void	print_row(int i, std::string command);
+		void	printRow(int i, std::string command);
 };
 
 #endif

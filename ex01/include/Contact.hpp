@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contact.hpp                                        :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjroydev <kjroydev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmarrero <kmarrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 18:37:19 by kjroydev          #+#    #+#             */
-/*   Updated: 2026/05/24 21:05:47 by kjroydev         ###   ########.fr       */
+/*   Updated: 2026/06/22 20:59:13 by kmarrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACT
-# define CONTACT
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
 # include <iostream>
 # include <string>
 
@@ -24,17 +24,17 @@ class Contact
 		std::string first_name_;
 		std::string phone_number_;
 	public:
-		void	set_contact(
+		void	setContact(
 				const std::string &first_name,
 				const std::string &last_name,
 				const std::string &nickname,
 				const std::string &num,
 				const std::string &secret);
-		const std::string& get_number() const;
-		const std::string& get_secret() const;
-		const std::string& get_nickname() const;
-		const std::string& get_last_name() const;
-		const std::string& get_first_name() const;
+		const std::string& getNumber() const;
+		const std::string& getSecret() const;
+		const std::string& getNickName() const;
+		const std::string& getLastName() const;
+		const std::string& getFirstName() const;
 };
 
 #endif
