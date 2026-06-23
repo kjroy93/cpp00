@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   MegaPhone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjroydev <kjroydev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmarrero <kmarrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 16:11:15 by kjroydev          #+#    #+#             */
-/*   Updated: 2026/06/10 19:56:45 by kjroydev         ###   ########.fr       */
+/*   Updated: 2026/06/23 18:18:53 by kmarrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ int	main(int argc, char *argv[])
 				str[j] = (char)std::toupper(str[j]);
 				j++;
 			}
-			std::cout << str << std::endl;
+			std::cout << str;
 			i++;
 		}
+		std::cout << std::endl;
 	}
 	return (0);
 }

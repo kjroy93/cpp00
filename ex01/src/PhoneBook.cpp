@@ -6,25 +6,26 @@
 /*   By: kmarrero <kmarrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 20:27:44 by kjroydev          #+#    #+#             */
-/*   Updated: 2026/06/22 21:16:55 by kmarrero         ###   ########.fr       */
+/*   Updated: 2026/06/23 19:36:53 by kmarrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-int	PhoneBook::getIndex()
+void	PhoneBook::eofCheck()
 {
-	return (i);
+	if (std::cin.eof())
+		exit(0);
 }
 
-void	PhoneBook::setIndex(int num)
+std::string	PhoneBook::cleanIndex(int i)
 {
-	i = num;
-}
+	std::string			s;
+	std::stringstream	index;
 
-void	PhoneBook::print(const std::string &s)
-{
-	std::cout << "|" << std::setw(10) << s;
+	index << i + 1;
+	s = index.str();
+	return (s);
 }
 
 void	PhoneBook::printRow(int i, std::string command)
@@ -48,14 +49,42 @@ void	PhoneBook::printRow(int i, std::string command)
 		print(format(this->contacts_[i].getNumber()));
 		print(format(this->contacts_[i].getSecret()));
 	}
-	std::cout << "|";
-	std::cout << std::endl;
+	std::cout << "|" << std::endl;
+}
+
+void	PhoneBook::printColumn(const std::string& c)
+{
+	if (c == "SEARCH")
+	{
+		std::cout << "|"
+		<< std::setw(10) << format("Index")		<< "|"
+		<< std::setw(10) << format("Name")		<< "|"
+		<< std::setw(10) << format("Last Name")	<< "|"
+		<< std::setw(10) << format("Nickname")	<< "|"
+		<< std::endl;
+	}
+	else
+	{
+		std::cout << "|"
+		<< std::setw(10) << format("Index")			<< "|"
+		<< std::setw(10) << format("Name")			<< "|"
+		<< std::setw(10) << format("Last Name")		<< "|"
+		<< std::setw(10) << format("Nickname")		<< "|"
+		<< std::setw(10) << format("Phone")			<< "|"
+		<< std::setw(10) << format("Secret")		<< "|"
+		<< std::endl;
+	}
+}
+
+void	PhoneBook::print(const std::string& s)
+{
+	std::cout << "|" << std::setw(10) << s;
 }
 
 std::string	PhoneBook::format(std::string info)
 {
-	size_t		str_len;
 	std::string	word;
+	size_t		str_len;
 
 	str_len = info.size();
 	if (str_len > 9)
@@ -67,29 +96,21 @@ std::string	PhoneBook::format(std::string info)
 	return (info);
 }
 
-std::string	PhoneBook::cleanIndex(int i)
+void	PhoneBook::printResult(int i)
 {
-	std::stringstream	index;
-	std::string			s;
-
-	index << i;
-	s = index.str();
-	return (s);
+	std::cout << "First Name: "		<< contacts_[i].getFirstName()	<< "\n" << std::endl;
+	std::cout << "Last Name: "		<< contacts_[i].getLastName()	<< "\n" << std::endl;
+	std::cout << "Nick Name: "		<< contacts_[i].getNickName()	<< "\n" << std::endl;
+	std::cout << "Phone: "			<< contacts_[i].getNumber()		<< "\n" << std::endl;
+	std::cout << "Secret: "			<< contacts_[i].getSecret()		<< "\n" << std::endl;	
 }
 
-void	PhoneBook::search()
+void	PhoneBook::search(int size)
 {
-	int	size;
 	int	index;
 
-	size = this->getIndex() % 8;
-	std::cout << "|"
-	<< std::setw(10) << "Index"		<< "|"
-	<< std::setw(10) << "Name"		<< "|"
-	<< std::setw(10) << "Last_Name"	<< "|"
-	<< std::setw(10) << "Nickname"	<< "|"
-	<< std::endl;
 	std::cout << "+----------+----------+----------+----------+" << std::endl;
+	this->printColumn("SEARCH");
 	for (int i = 0; i < size; i++)
 		printRow(i, "SEARCH");
 	std::cout << "+----------+----------+----------+----------+" << std::endl;
@@ -97,68 +118,82 @@ void	PhoneBook::search()
 	{
 		std::cout << "Please type a valid index" << std::endl;
 		std::cin >> index;
-
-		if (index < 0 || index >= size || index > 8)
+		index -= 1;
+		this->eofCheck();
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(255, '\n');
+			std::cout << "Invalid input (not a number)" << std::endl;
+			continue ;
+		}
+		if (index < 0 || index >= size)
 		{
 			std::cout << "Invalid index" << std::endl;
-			std::cin.clear();
 			continue ;
 		}
 		break ;
 	}
-	std::cout << "First Name: "		<< contacts_[index].getFirstName()	<< "\n";
-	std::cout << "Last Name: "		<< contacts_[index].getLastName()	<< "\n";
-	std::cout << "Nick Name: "		<< contacts_[index].getNickName()	<< "\n";
-	std::cout << "Phone number: "	<< contacts_[index].getNumber()		<< "\n";
-	std::cout << "Dark Secret: "	<< contacts_[index].getSecret()		<< "\n";
+	this->printResult(index);
 }
 
-void	PhoneBook::table(int &n)
+void	PhoneBook::table(int size)
 {
 	std::string	s;
-	int	size;
 
-	size = this->getIndex() % 8;
-	std::cout << "|"
-	<< std::setw(10) << "Index"			<< "|"
-	<< std::setw(10) << "Name"			<< "|"
-	<< std::setw(10) << "Last_Name"		<< "|"
-	<< std::setw(10) << "Nickname"		<< "|"
-	<< std::setw(10) << "Phone Number"	<< "|"
-	<< std::setw(10) << "Dark Secret"	<< "|"
-	<< std::endl;
 	std::cout << "+----------+----------+----------+----------+----------+----------+" << std::endl;
-	for (int i = 0; i < n; i++)
+	this->printColumn("TABLE");
+	for (int i = 0; i < size; i++)
 		printRow(i, "TABLE");
 	std::cout << "+----------+----------+----------+----------+----------+----------+" << std::endl;
 }
 
+int	PhoneBook::getIndex()
+{
+	return (this->i);
+}
+
+void	PhoneBook::setIndex(int num)
+{
+	this->i = num;
+}
+
 void	PhoneBook::addContact()
 {
-	std::string first_name;
-	std::string last_name;
-	std::string nick_name;
-	std::string number;
-	std::string secret;
 	int			i;
 	int			size;
+	std::string secret;
+	std::string number;
+	std::string last_name;
+	std::string nick_name;
+	std::string first_name;
 
 	i = this->getIndex() % 8;
 	std::cout << "Please enter the first name of you new contact" << std::endl;
-	std::cin >> first_name;
+	this->eofCheck();
+	std::cin.ignore(255, '\n');
+	std::getline(std::cin, first_name);
+	this->eofCheck();
 	std::cout << "Please enter the last name of your new contact" << std::endl;
-	std::cin >> last_name;
+	this->eofCheck();
+	std::getline(std::cin, last_name);
+	this->eofCheck();
 	std::cout << "Enter a nickname for your new contact" << std::endl;
-	std::cin >> nick_name;
+	this->eofCheck();
+	std::getline(std::cin, nick_name);
+	this->eofCheck();
 	std::cout << "Please type the phone number" << std::endl;
-	std::cin >> number;
+	this->eofCheck();
+	std::getline(std::cin, number);
+	this->eofCheck();
 	std::cout << "You know a juicy secret about your new contact ^^?" << std::endl;
-	std::cin >> secret;
-
+	this->eofCheck();
+	std::getline(std::cin, secret);
+	this->eofCheck();
 	contacts_[i].setContact(first_name, last_name, nick_name, number, secret);
-
 	this->setIndex(this->getIndex() + 1);
-
 	size = this->getIndex();
+	if (size > 8)
+		size = 8;
 	table(size);
 }

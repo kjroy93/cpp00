@@ -6,18 +6,18 @@
 /*   By: kmarrero <kmarrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 19:06:42 by kjroydev          #+#    #+#             */
-/*   Updated: 2026/06/22 20:59:08 by kmarrero         ###   ########.fr       */
+/*   Updated: 2026/06/23 18:56:18 by kmarrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
 void	Contact::setContact(
-				const std::string &first_name,
-				const std::string &last_name,
-				const std::string &nickname,
-				const std::string &num,
-				const std::string &secret)
+				const std::string& first_name,
+				const std::string& last_name,
+				const std::string& nickname,
+				const std::string& num,
+				const std::string& secret)
 {
 	first_name_ = first_name;
 	last_name_ = last_name;

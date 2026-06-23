@@ -3,9 +3,11 @@
 ###########################################
 
 NAME			=	megaphone
-SRC_FILES		= 	megaphone.cpp
+SRC				= 	MegaPhone.cpp
+OBJ_DIR			=	obj
 CPP				=	c++
 CPPFLAGS		=	-Wall -Werror -Wextra -std=c++98
+OBJ				=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 ###########################################
 #                 RULES                   #
@@ -13,15 +15,23 @@ CPPFLAGS		=	-Wall -Werror -Wextra -std=c++98
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(OBJ)
 	@echo "Compiling Megaphone 42"
-	@$(CPP) $(CPPFLAGS) $(SRC_FILES) -o $(NAME)
+	@$(CPP) $(CPPFLAGS) $(OBJ) -o $(NAME)
+
+$(OBJ_DIR)/%.o: %.cpp
+	@mkdir -p $(dir $@)
+	@$(CPP) $(CPPFLAGS) -c $< -o $@
 
 ###########################################
 #               CLEANING                  #
 ###########################################
 
-fclean:
+clean:
+	@echo "Removing objects"
+	@rm -rf $(OBJ_DIR)
+
+fclean: clean
 	@echo "Removing executables"
 	@rm -f $(NAME)
 

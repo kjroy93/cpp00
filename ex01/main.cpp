@@ -6,7 +6,7 @@
 /*   By: kmarrero <kmarrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 18:58:44 by kjroydev          #+#    #+#             */
-/*   Updated: 2026/06/22 20:26:34 by kmarrero         ###   ########.fr       */
+/*   Updated: 2026/06/23 19:40:49 by kmarrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,35 @@
 int	main(void)
 {
 	PhoneBook	pb;
-	std::string	command;
-	int			i;
 	int			size;
+	std::string	command;
 
-	i = 0;
-	size = 0;
-	pb.setIndex(i);
+	pb.setIndex(0);
 	while (true)
 	{
+		if (std::cin.eof())
+			exit(0);
 		std::cout << "Please enter a valid command: ADD, SEARCH or EXIT" << std::endl;
 		std::cin >> command;
-		if (command == "ADD")
+		if (std::cin.fail())
 		{
-			pb.addContact();
-			i += 1;
-			if (size < 8)
-				size++;
-			pb.setIndex(i);
+			std::cin.clear();
+			std::cin.ignore(255, '\n');
+			continue ;
 		}
+		else if (command == "ADD")
+			pb.addContact();
 		else if (command == "SEARCH")
-			pb.search();
+		{
+			size = pb.getIndex();
+			if (size > 8)
+				size = 8;
+			pb.search(size);
+		}
 		else if (command == "EXIT")
 			break ;
 		else
 			continue ;
 	}
+	return (0);
 }

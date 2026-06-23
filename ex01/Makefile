@@ -2,13 +2,15 @@
 #             VARIABLES                   #
 ###########################################
 
-NAME			=	book
-SRC_FILES		= 	src/Contact.cpp		\
-					src/main.cpp		\
-					src/PhoneBook.cpp
+NAME			=	phonebook
+SRC				=	src/Contact.cpp		\
+					src/PhoneBook.cpp	\
+					main.cpp
+OBJ_DIR			=	obj
 INCLUDES		=	include
 CPP				=	c++
 CPPFLAGS		=	-Wall -Werror -Wextra -std=c++98 -I$(INCLUDES)
+OBJ				=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 ###########################################
 #                 RULES                   #
@@ -16,15 +18,23 @@ CPPFLAGS		=	-Wall -Werror -Wextra -std=c++98 -I$(INCLUDES)
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(OBJ)
 	@echo "Compiling Phonebook 42"
-	@$(CPP) $(CPPFLAGS) $(SRC_FILES) -o $(NAME)
+	@$(CPP) $(CPPFLAGS) $(SRC) -o $(NAME)
+
+$(OBJ_DIR)/%.o: %.cpp
+	@mkdir -p $(dir $@)
+	@$(CPP) $(CPPFLAGS) -c $< -o $@
 
 ###########################################
 #               CLEANING                  #
 ###########################################
 
-fclean:
+clean:
+	@echo "Removing objects"
+	@rm -rf $(OBJ_DIR)
+
+fclean: clean
 	@echo "Removing executables"
 	@rm -f $(NAME)
 
