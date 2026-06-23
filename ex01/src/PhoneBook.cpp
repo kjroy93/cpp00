@@ -6,7 +6,7 @@
 /*   By: kmarrero <kmarrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 20:27:44 by kjroydev          #+#    #+#             */
-/*   Updated: 2026/06/23 19:43:03 by kmarrero         ###   ########.fr       */
+/*   Updated: 2026/06/23 19:51:45 by kmarrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,24 +170,19 @@ void	PhoneBook::addContact()
 
 	i = this->getIndex() % 8;
 	std::cout << "Please enter the first name of you new contact" << std::endl;
-	this->eofCheck();
 	std::cin.ignore(255, '\n');
 	std::getline(std::cin, first_name);
 	this->eofCheck();
 	std::cout << "Please enter the last name of your new contact" << std::endl;
-	this->eofCheck();
 	std::getline(std::cin, last_name);
 	this->eofCheck();
 	std::cout << "Enter a nickname for your new contact" << std::endl;
-	this->eofCheck();
 	std::getline(std::cin, nick_name);
 	this->eofCheck();
 	std::cout << "Please type the phone number" << std::endl;
-	this->eofCheck();
 	std::getline(std::cin, number);
 	this->eofCheck();
 	std::cout << "You know a juicy secret about your new contact ^^?" << std::endl;
-	this->eofCheck();
 	std::getline(std::cin, secret);
 	this->eofCheck();
 	contacts_[i].setContact(first_name, last_name, nick_name, number, secret);
