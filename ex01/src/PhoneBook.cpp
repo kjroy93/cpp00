@@ -6,7 +6,7 @@
 /*   By: kmarrero <kmarrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 20:27:44 by kjroydev          #+#    #+#             */
-/*   Updated: 2026/06/23 19:36:53 by kmarrero         ###   ########.fr       */
+/*   Updated: 2026/06/23 19:43:03 by kmarrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	PhoneBook::search(int size)
 	std::cout << "+----------+----------+----------+----------+" << std::endl;
 	this->printColumn("SEARCH");
 	for (int i = 0; i < size; i++)
-		printRow(i, "SEARCH");
+		this->printRow(i, "SEARCH");
 	std::cout << "+----------+----------+----------+----------+" << std::endl;
 	while (true)
 	{
@@ -144,7 +144,7 @@ void	PhoneBook::table(int size)
 	std::cout << "+----------+----------+----------+----------+----------+----------+" << std::endl;
 	this->printColumn("TABLE");
 	for (int i = 0; i < size; i++)
-		printRow(i, "TABLE");
+		this->printRow(i, "TABLE");
 	std::cout << "+----------+----------+----------+----------+----------+----------+" << std::endl;
 }
 
@@ -195,5 +195,5 @@ void	PhoneBook::addContact()
 	size = this->getIndex();
 	if (size > 8)
 		size = 8;
-	table(size);
+	this->table(size);
 }
