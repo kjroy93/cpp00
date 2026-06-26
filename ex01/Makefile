@@ -20,11 +20,11 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "Compiling Phonebook 42"
-	$(CPP) $(CPPFLAGS) $(OBJ) -o $(NAME)
+	@$(CPP) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(dir $@)
-	$(CPP) $(CPPFLAGS) -c $< -o $@
+	@$(CPP) $(CPPFLAGS) -c $< -o $@
 
 ###########################################
 #               INCLUDE                   #
