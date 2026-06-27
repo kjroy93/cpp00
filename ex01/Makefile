@@ -11,7 +11,7 @@ SRC				=	src/Contact.cpp		\
 OBJ_DIR			=	obj
 INCLUDES		=	include
 CPP				=	c++
-CPPFLAGS		=	-Wall -Werror -Wextra -std=c++98 -I$(INCLUDES) -MMD -MP
+CPPFLAGS		=	-Wall -Werror -Wextra -std=c++98 -I$(INCLUDES) -MMD -MP -g
 OBJ				=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 ###########################################
@@ -22,11 +22,11 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "Compiling Phonebook 42"
-	@$(CPP) $(CPPFLAGS) $(OBJ) -o $(NAME)
+	$(CPP) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(dir $@)
-	@$(CPP) $(CPPFLAGS) -c $< -o $@
+	$(CPP) $(CPPFLAGS) -c $< -o $@
 
 ###########################################
 #               INCLUDE                   #
