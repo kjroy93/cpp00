@@ -6,7 +6,7 @@
 /*   By: kjroydev <kjroydev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 20:21:04 by kmarrero          #+#    #+#             */
-/*   Updated: 2026/06/27 04:05:54 by kjroydev         ###   ########.fr       */
+/*   Updated: 2026/06/27 04:54:23 by kjroydev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	PhoneBook::search(int size)
 	while (true)
 	{
 		std::cout << "Please type a valid index" << std::endl;
-		std::getline(std::cin, line);
+		if (!std::getline(std::cin, line))
+			return ;
 		if (line.find_first_not_of(" \t") == std::string::npos)
 		{
 			std::cout << "Invalid input" << std::endl;
@@ -51,6 +52,11 @@ void	PhoneBook::search(int size)
 		break ;
 	}
 	index -= 1;
+	if (index < 0 || index >= size)
+	{
+		std::cout << "Invalid input" << std::endl;
+		return ;
+	}
 	this->printResult(index);
 }
 
@@ -86,8 +92,7 @@ bool	PhoneBook::processEntry(const std::string& prompt, std::string& entry)
 	while(true)
 	{
 		std::cout << prompt << std::endl;
-		std::getline(std::cin, entry);
-		if (std::cin.eof())
+		if (!std::getline(std::cin, entry))
 			return (false);
 		if (this->isValidEntry(entry))
 			return (true);
