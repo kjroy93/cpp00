@@ -7,7 +7,7 @@ SRC				= 	MegaPhone.cpp
 OBJ_DIR			=	obj
 CPP				=	c++
 CPPFLAGS		=	-Wall -Werror -Wextra -std=c++98
-OBJ				=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC)) -MMD -MP
+OBJ				=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 ###########################################
 #                 RULES                   #
@@ -22,12 +22,6 @@ $(NAME): $(OBJ)
 $(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(dir $@)
 	@$(CPP) $(CPPFLAGS) -c $< -o $@
-
-###########################################
-#               INCLUDE                   #
-###########################################
-
--include $(OBJ:.o=.d)
 
 ###########################################
 #               CLEANING                  #

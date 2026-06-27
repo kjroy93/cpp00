@@ -5,6 +5,8 @@
 NAME			=	phonebook
 SRC				=	src/Contact.cpp		\
 					src/PhoneBook.cpp	\
+					src/print.cpp		\
+					src/utils.cpp		\
 					main.cpp
 OBJ_DIR			=	obj
 INCLUDES		=	include

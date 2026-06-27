@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmarrero <kmarrero@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kjroydev <kjroydev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 18:58:44 by kjroydev          #+#    #+#             */
-/*   Updated: 2026/06/26 22:19:27 by kmarrero         ###   ########.fr       */
+/*   Updated: 2026/06/27 03:37:25 by kjroydev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ int	main(void)
 	pb.setIndex(0);
 	while (true)
 	{
+		if (std::cin.eof())
+			break ;
 		std::cout << "Please enter a valid command: ADD, SEARCH or EXIT" << std::endl;
 		std::getline(std::cin, command);
-		pb.eofCheck();
+		if (std::cin.eof())
+			break ;
 		if (command == "ADD")
 			pb.addContact();
 		else if (command == "SEARCH")
