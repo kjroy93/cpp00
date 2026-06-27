@@ -6,7 +6,7 @@
 /*   By: kjroydev <kjroydev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 20:21:04 by kmarrero          #+#    #+#             */
-/*   Updated: 2026/06/27 03:10:12 by kjroydev         ###   ########.fr       */
+/*   Updated: 2026/06/27 04:05:54 by kjroydev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ bool PhoneBook::processNumber(const std::string& prompt, std::string& number)
 			if (entry.size() == 1)
 			{
 				std::cout << "Invalid input. "
-				<< "Phone number has to be numbers, not just +" << std::endl;
+				<< "Phone number must have numbers, not just +" << std::endl;
 				continue ;
 			}
 			i = 1;
