@@ -6,7 +6,7 @@
 /*   By: kmarrero <kmarrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 20:21:04 by kmarrero          #+#    #+#             */
-/*   Updated: 2026/06/29 12:36:35 by kmarrero         ###   ########.fr       */
+/*   Updated: 2026/06/29 13:08:11 by kmarrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,20 @@ bool	PhoneBook::processEntry(const std::string& prompt, std::string& entry)
 		std::cout << prompt << std::endl;
 		if (!std::getline(std::cin, entry))
 			return (false);
+		for (size_t i = 0; i < entry.size(); i++)
+		{
+			if (isdigit(entry[i]))
+			{
+				std::cout << "This field cannot be populated with numbers" << std::endl;
+				entry.clear();
+				continue ;
+			}
+		}
 		if (this->isValidEntry(entry))
 			return (true);
 		std::cout << "Field cannot be empty, "
-		<< "have only white spaces "
-		<< "or contain characters only available in UTF-8" << std::endl;
+		<< "have only white spaces, numbers "
+		<< "or contain characters outside of 'C' classic ASCII table" << std::endl;
 	}
 }
 
@@ -133,19 +142,17 @@ bool PhoneBook::processNumber(const std::string& prompt, std::string& number)
 		for (; i < entry.size(); i++)
 		{
 			if (!std::isdigit(static_cast<unsigned char>(entry[i])))
-			{
 				ok = false;
-				break ;
-			}
 		}
 		if (!ok)
 		{
 			std::cout << "Invalid input" << std::endl;
 			continue ;
 		}
-		number = entry;
-		return (true);
+		break ;
 	}
+	number = entry;
+	return (true);
 }
 
 void	PhoneBook::addContact()
