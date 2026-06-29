@@ -21,7 +21,7 @@ OBJ				=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo "Compiling Phonebook 42"
+	@echo "Compiling PhoneBook 42"
 	$(CPP) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.cpp
